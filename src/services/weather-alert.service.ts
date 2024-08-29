@@ -3,8 +3,11 @@ import { HumidityAlertDto, IpLocationDto } from 'src/dto/humidity-alert.dto';
 
 @Injectable()
 export class WeatherAlertService {
-  private readonly IP_API_URL = process.env.IP_API_URL;
-  private readonly OPENWEATHER_API_URL = process.env.OPENWEATHER_API_URL;
+  private readonly IP_API_URL =
+    process.env.IP_API_URL || 'http://ip-api.com/json/';
+  private readonly OPENWEATHER_API_URL =
+    process.env.OPENWEATHER_API_URL ||
+    'https://api.openweathermap.org/data/2.5/';
   private readonly OPENWEATHER_API_KEY = process.env.OPENWEATHER_API_KEY;
 
   /**
@@ -59,10 +62,7 @@ export class WeatherAlertService {
         );
       }
 
-      const locationData = new IpLocationDto();
-      locationData.lat = data.lat;
-      locationData.lon = data.lon;
-      locationData.city = data.city;
+      const locationData = new IpLocationDto(data.lat, data.lon, data.city);
 
       return locationData;
     } catch (error) {
@@ -108,10 +108,11 @@ export class WeatherAlertService {
         );
       }
 
-      const openWeatherData = new HumidityAlertDto();
-      openWeatherData.lat = data.coord.lat;
-      openWeatherData.lon = data.coord.lon;
-      openWeatherData.humidity = data.main.humidity;
+      const openWeatherData = new HumidityAlertDto(
+        data.coord.lat,
+        data.coord.lon,
+        data.main.humidity,
+      );
 
       return {
         openWeatherData: openWeatherData,
