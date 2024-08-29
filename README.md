@@ -1,4 +1,5 @@
 # 🌦️ Weather Humidity Checker
+![image](https://github.com/user-attachments/assets/715264f8-6670-4805-8ec5-92d3f7dbea98)
 
 ## 📋 Descrição do Projeto
 
