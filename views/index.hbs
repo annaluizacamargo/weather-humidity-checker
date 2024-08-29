@@ -158,17 +158,17 @@
       <div class="form-group">
         <div class="input">
           <label for='lat'>Insira a latitude:</label>
-          <input type='text' id='lat' name='lat' />
+          <input type='number' min="-90" max="90" step="any" id='lat' name='lat' />
         </div>
 
         <div class="input">
           <label for='lon'>Insira a longitude:</label>
-          <input type='text' id='lon' name='lon' />
+          <input type='number' min="-180" max="180" step="any" id='lon' name='lon' />
         </div>
 
         <div class="input">
           <label for='humidity'>Insira a umidade do ar no momento:</label>
-          <input type='text' id='humidity' name='humidity' required />
+          <input type='number' min="0" max="100" step="any" id='humidity' name='humidity' required />
         </div>
       </div>
       <button type='submit'>Verificar a umidade</button>
