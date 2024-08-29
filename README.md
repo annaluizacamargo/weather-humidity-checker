@@ -273,6 +273,6 @@ Visando obter o melhor desempenho e organização do código, foram utilizados o
 
 Desenvolvido por **Anna Luiza Fistarol**.
 
-- 🌷 **LinkedIn:** [linkedin.com/in/seu-perfil](https://linkedin.com/in/seu-perfil)
-- 🌸 **GitHub:** [github.com/seu-usuario](https://github.com/seu-usuario)
-- 🌺 **Email:** seu-email@example.com
+- 🌷 **LinkedIn:** [anna-luiza-camargo-fistarol](https://www.linkedin.com/in/anna-luiza-camargo-fistarol/)
+- 🌸 **GitHub:** [annaluizacamargo](https://github.com/annaluizacamargo)
+- 🌺 **Email:** [luizafistarol@gmail.com](mailto:luizafistarol@gmail.com)
