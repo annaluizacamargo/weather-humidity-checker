@@ -18,16 +18,16 @@ import {
 export class AppController {
   constructor(private readonly weatherAlertService: WeatherAlertService) {}
 
-  // @Get()
-  // @HttpCode(200)
-  // getRoot(): string {
-  //   return 'Welcome to the Weather Humidity Checker API';
-  // }
-
   @Get()
   @Render('index')
   getHome() {
     return;
+  }
+
+  @Get('first-test')
+  @HttpCode(200)
+  getRoot(): string {
+    return 'Welcome to the Weather Humidity Checker API';
   }
 }
 

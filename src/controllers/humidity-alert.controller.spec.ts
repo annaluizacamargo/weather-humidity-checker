@@ -96,7 +96,7 @@ describe('AppController (e2e)', () => {
 
   it('/ (GET)', () => {
     return request(app.getHttpServer())
-      .get('/')
+      .get('/first-test')
       .expect(200)
       .expect('Welcome to the Weather Humidity Checker API');
   });
