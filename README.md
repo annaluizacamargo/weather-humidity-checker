@@ -45,7 +45,7 @@ O objetivo deste projeto é permitir que o usuário compare o valor de umidade a
 2.  A aplicação consulta a API do OpenWeather e recebe um valor de umidade atual para a cidade de Curitiba (como por exemplo humidade de de `70%`).
 3.  A aplicação compara os valores: `70% (API) > 60% (Usuário)`.
 4.  A aplicação retorna:
-    - **Alerta:** "Alerta: A umidade atual em Curitiba é de 70%, que é maior que o valor informado de 60%."
+    - **Mensagem de alerta:** "`Alerta: A umidade atual em Curitiba é de 70%, que é maior que o valor informado de 60%.`"
 
 ## ⚙️ Requisitos de Instalação e Configuração
 
@@ -276,3 +276,155 @@ Desenvolvido por **Anna Luiza Fistarol**.
 - 🌷 **LinkedIn:** [anna-luiza-camargo-fistarol](https://www.linkedin.com/in/anna-luiza-camargo-fistarol/)
 - 🌸 **GitHub:** [annaluizacamargo](https://github.com/annaluizacamargo)
 - 🌺 **Email:** [luizafistarol@gmail.com](mailto:luizafistarol@gmail.com)
+
+
+## 🛠️ Postman Collection
+
+```json
+{
+	"info": {
+		"_postman_id": "af8fe88c-83b5-487d-b088-8008f2b950ff",
+		"name": "🌦️ Weather Humidity Checker",
+		"description": "# 📚 Documentação da API\n\n## Descrição\n\nSeja bem-vindo(a) ao repositório do **Weather Humidity Checker**, uma API que permite verificar a umidade do ar em uma localização específica e comparar com um valor de referência fornecido pelo usuário. A API utiliza dados do OpenWeather para realizar essa verificação.\n\n## Endpoints\n\n### 1\\. 🌍 Pegar Localização a partir do IP \\[Get Location From IP\\]\n\n- **Método:** GET\n    \n- **URL:** `/humidity-verifier/get-location-from-ip`\n    \n- **Descrição:** Obtém a localização (latitude, longitude e cidade) com base no IP do usuário.\n    \n- **Exemplo de Requisição:**\n    \n\n``` bash\ncurl --location 'http://localhost:3000/humidity-verifier/get-location-from-ip'\n\n ```\n\n- **Resposta de Sucesso:**\n    \n\n``` json\n{\n  \"lat\": -25.42778,\n  \"lon\": -49.27306,\n  \"city\": \"Curitiba\"\n}\n\n ```\n\n### 2\\. 💧 Pegar a Umidade do Usuário \\[Get Humidity Data\\]\n\n- **Método:** POST\n    \n- **URL:** `/humidity-verifier/get-user-humidity`\n    \n- **Descrição:** Obtém a umidade atual de uma localização específica fornecida pelo usuário.\n    \n- **Body:**\n    \n\n``` json\n{\n  \"lat\": \"-25.42778\",\n  \"lon\": \"-49.27306\",\n  \"humidity\": \"60\"\n}\n\n ```\n\n- **Exemplo de Requisição:**\n    \n\n``` bash\ncurl --location 'http://localhost:3000/humidity-verifier/get-user-humidity' \\\n--header 'Content-Type: application/x-www-form-urlencoded' \\\n--data-urlencode 'lat=-25.42778' \\\n--data-urlencode 'lon=-49.27306' \\\n--data-urlencode 'humidity=60%'\n\n ```\n\n- **Resposta de Sucesso:**\n    \n\n``` json\n{\n  \"openWeatherData\": {\n    \"lat\": -25.42778,\n    \"lon\": -49.27306,\n    \"humidity\": 62\n  },\n  \"currentCity\": \"Curitiba\"\n}\n\n ```\n\n### 3\\. ✅ Verificar Umidade \\[Check Humidity\\]\n\n- **Método:** POST\n    \n- **URL:** `/humidity-verifier/check-humidity`\n    \n- **Descrição:** Verifica se a umidade atual de uma localização específica é maior que o valor de referência fornecido pelo usuário.\n    \n- **Body:**\n    \n\n``` json\n{\n  \"lat\": \"-25.42778\",\n  \"lon\": \"-49.27306\",\n  \"humidity\": \"60%\"\n}\n\n ```\n\n- **Exemplo de Requisição:**\n    \n\n``` bash\ncurl --location 'http://localhost:3000/humidity-verifier/check-humidity' \\\n  --header 'Content-Type: application/x-www-form-urlencoded' \\\n  --data-urlencode 'lat=-25.42778' \\\n  --data-urlencode 'lon=-49.27306' \\\n  --data-urlencode 'humidity=60%'' \\\n\n ```\n\n- **Resposta de Sucesso:**\n    \n\n``` json\n\"Alerta: A umidade atual em Curitiba é de 70%, que é maior que o valor informado de 60%.\"\n\n ```\n\n## 📝 Variáveis de Ambiente\n\nCertifique-se de configurar as seguintes variáveis de ambiente no Postman para facilitar a configuração e reutilização dos valores:\n\n- **`baseUrl`**: URL base da API (ex: `http://localhost:3000`)\n    \n- **`lat`**: Latitude a ser validada (ex: `-25.42778`)\n    \n- **`lon`**: Longitude a ser validada (ex: `-49.27306`)\n    \n- `humity`: Umidade do local a ser comparado (ex. `60%`)\n    \n\nE lembre de clone o arquivo `.env.example` e atualize o parâmetro `OPENWEATHER_API_KEY` com a sua chave da API do OpenWeather ou crie um arquivo `.env` na raiz do projeto edicione a sua chave da API do OpenWeather.\n\n```\nOPENWEATHER_API_URL=https://api.openweathermap.org/data/2.5/\nOPENWEATHER_API_KEY=your-openweather-api-key\nIP_API_URL=http://ip-api.com/json/\n\n ```\n\n## 📞 Contato\n\nDesenvolvido por **Anna Luiza Fistarol**.\n\n- 🌷 **LinkedIn:** [anna-luiza-camargo-fistarol](https://www.linkedin.com/in/anna-luiza-camargo-fistarol/)\n    \n- 🌸 **GitHub:** [annaluizacamargo](https://github.com/annaluizacamargo)\n    \n- 🌺 **Email:** [luizafistarol@gmail.com](https://mailto:luizafistarol@gmail.com)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27834411"
+	},
+	"item": [
+		{
+			"name": "Get Location From IP",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}humidity-verifier/get-location-from-ip",
+					"host": [
+						"{{url}}humidity-verifier"
+					],
+					"path": [
+						"get-location-from-ip"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Humidity Data",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "lat",
+							"value": "{{lat}}",
+							"description": "Insira a latitude a ser validada",
+							"type": "text"
+						},
+						{
+							"key": "lon",
+							"value": "{{lon}}",
+							"description": "Insira a longitude a ser validada",
+							"type": "text"
+						},
+						{
+							"key": "humidity",
+							"value": "{{humity}}",
+							"description": "Insira a humidade do local a ser comparado",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}humidity-verifier/get-user-humidity",
+					"host": [
+						"{{url}}humidity-verifier"
+					],
+					"path": [
+						"get-user-humidity"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Check Humidity",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "lat",
+							"value": "{{lat}}",
+							"description": "Insira a latitude a ser validada",
+							"type": "text"
+						},
+						{
+							"key": "lon",
+							"value": "{{lon}}",
+							"description": "Insira a longitude a ser validada",
+							"type": "text"
+						},
+						{
+							"key": "humidity",
+							"value": "{{humity}}",
+							"description": "Insira a humidade do local a ser comparado",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}humidity-verifier/check-humidity",
+					"host": [
+						"{{url}}humidity-verifier"
+					],
+					"path": [
+						"check-humidity"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
+```
+
+## 🛠️ Postman Environment
+
+```json
+{
+	"id": "6e184961-b203-433d-b246-5b62b36ff196",
+	"name": "humidity_alert_test_parameters",
+	"values": [
+		{
+			"key": "url",
+			"value": "http://localhost:3000/",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "lat",
+			"value": "-25.42778",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "lon",
+			"value": "-49.27306",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "humity",
+			"value": "60%",
+			"type": "default",
+			"enabled": true
+		}
+	],
+	"_postman_variable_scope": "environment",
+	"_postman_exported_at": "2024-08-29T15:58:48.408Z",
+	"_postman_exported_using": "Postman/11.2.35"
+}
+```
