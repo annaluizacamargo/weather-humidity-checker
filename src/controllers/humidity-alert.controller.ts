@@ -1,4 +1,12 @@
-import { Body, Controller, Get, HttpCode, Post } from '@nestjs/common';
+import {
+  BadRequestException,
+  Body,
+  Controller,
+  Get,
+  HttpCode,
+  Post,
+  Render,
+} from '@nestjs/common';
 import { WeatherAlertService } from 'src/services/weather-alert.service';
 import {
   HumidityAlertDto,
@@ -14,6 +22,12 @@ export class AppController {
   @HttpCode(200)
   getRoot(): string {
     return 'Welcome to the Weather Humidity Checker API';
+  }
+
+  @Get('index')
+  @Render('index')
+  getHome() {
+    return;
   }
 }
 
@@ -41,11 +55,17 @@ export class HumidityAlertController {
   @Post('check-humidity')
   @HttpCode(200)
   async checkHumidity(
-    @Body() HumidityAlertUserInfoDto: HumidityAlertUserInfoDto,
+    @Body() body: { lat: string; lon: string; humidity: string },
   ): Promise<string> {
-    const userLat = parseFloat(HumidityAlertUserInfoDto.lat);
-    const userLon = parseFloat(HumidityAlertUserInfoDto.lon);
-    const userHumidity = parseFloat(HumidityAlertUserInfoDto.humidity);
+    const { lat, lon, humidity } = body;
+
+    if (!humidity) {
+      throw new BadRequestException('Missing required parameters');
+    }
+
+    const userLat = parseFloat(lat);
+    const userLon = parseFloat(lon);
+    const userHumidity = parseFloat(humidity);
 
     return this.weatherAlertService.checkHumidity({
       lat: userLat,

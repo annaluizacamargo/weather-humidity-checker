@@ -85,8 +85,16 @@ export class WeatherAlertService {
     currentCity: string;
   }> {
     const location = await this.getLocationFromIP();
-    const userLat = lat ?? location.lat;
-    const userLon = lon ?? location.lon;
+    let userLat: number;
+    let userLon: number;
+
+    if (lat && typeof lat === 'number' && lon && typeof lon === 'number') {
+      userLat = lat;
+      userLon = lon;
+    } else {
+      userLat = location.lat;
+      userLon = location.lon;
+    }
 
     try {
       const data = await this.fetchFromApi(
@@ -107,7 +115,7 @@ export class WeatherAlertService {
 
       return {
         openWeatherData: openWeatherData,
-        currentCity: location?.city,
+        currentCity: data?.name ?? location?.city,
       };
     } catch (error) {
       this.handleUnexpectedError(error, 'Error getting weather data');
