@@ -9,7 +9,7 @@ describe('HumidityAlertController', () => {
   let humidityAlertController: HumidityAlertController;
 
   // TODO: Put your personal API key here to run the tests:
-  const personalApiKey = '8fd6779b63c082cc0f05492cf9d9c8d1';
+  const personalApiKey = 'your-personal-api-key';
   const latToTest = '-25.50';
   const lonToTest = '-49.29';
   const lowerHumidityToTest = '1';

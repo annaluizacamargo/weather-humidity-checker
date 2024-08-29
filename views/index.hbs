@@ -207,12 +207,15 @@
           body: JSON.stringify(data)
         });
 
+        const responseElement = document.getElementById('response');
+
         if (!response.ok) {
-          throw new Error('Network response was not ok');
+          responseElement.innerText = 'Erro ao verificar a umidade, por favor verifique os dados inseridos e tente novamente!';
+          responseElement.parentElement.style.display = 'flex';
+          return;
         }
 
         const result = await response.text();
-        const responseElement = document.getElementById('response');
         responseElement.innerText = result;
         responseElement.parentElement.style.display = 'flex';
 

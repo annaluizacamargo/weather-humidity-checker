@@ -88,6 +88,13 @@ export class WeatherAlertService {
     let userLat: number;
     let userLon: number;
 
+    if (!this.OPENWEATHER_API_KEY) {
+      throw new HttpException(
+        'Please provide an OpenWeather API key in the .env file',
+        HttpStatus.BAD_REQUEST,
+      );
+    }
+
     if (lat && typeof lat === 'number' && lon && typeof lon === 'number') {
       userLat = lat;
       userLon = lon;
